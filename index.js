@@ -11,7 +11,9 @@ class ICONPortfolio {
 
     /**
      * This method must be called after initializing the ICONPortfolio class, when invoked will allow other methods the 
-     * necessary information to call the GitHub API
+     * necessary information to call the GitHub API. For this method to work correctly, you need to have a fine-grained 
+     * personal access token for GitHub API usage
+     * API Documentation: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-fine-grained-personal-access-token
      * @param {*} username - Required - The username to authenticate the user
      * @param {*} token - Optional - The token to authenticate the Octokit with
      */
