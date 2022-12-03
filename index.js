@@ -14,8 +14,9 @@ class ICONPortfolio {
      * necessary information to call the GitHub API. For this method to work correctly, you need to have a fine-grained 
      * personal access token for GitHub API usage
      * API Documentation: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-fine-grained-personal-access-token
-     * @param {*} username - Required - The username to authenticate the user
-     * @param {*} token - Optional - The token to authenticate the Octokit with
+     * @param {string} username - Required - The username to authenticate the user
+     * @param {string} token - Optional - The token to authenticate the Octokit with
+     * @returns {void}
      */
     async authenticate(username, token = process.env.AUTH_TOKEN ) {
         if (!process.env.AUTH_TOKEN && !token) {
@@ -33,7 +34,8 @@ class ICONPortfolio {
      * Private method - This method will be automatically invoked if call the authenticate() method
      * This method will get the user information from GitHub 
      * API Documentation:  https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-a-user
-     * @param {*} username - the username for the detailed information
+     * @param {string} username - the username for the detailed information
+     * @returns {void}
      */
     async getUser(username) {
         try {
@@ -50,7 +52,8 @@ class ICONPortfolio {
     /**
      * This method will create a repository in the format "ICON Web Portfolio {UUIDv4}" if the argument name is not specified.
      * API Documentation: https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-using-a-template
-     * @param {*} name - Optional - the name of the repository that you will be creating
+     * @param {string} name - Optional - the name of the repository that you will be creating
+     * @returns {void}
      */    
     async createRepository(name) {
         try {
@@ -67,7 +70,8 @@ class ICONPortfolio {
     /**
      * This method will get a repository that exists in your account
      * API Documentation: https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#get-a-repository
-     * @param {*} name - Required - the name of the repository
+     * @param {string} name - Required - the name of the repository
+     * @returns {void}
      */    
      async getRepository(name) {
         try {
@@ -90,8 +94,9 @@ class ICONPortfolio {
      * This method will be used to upload to the repository that you created before with the content to the filePath you specified.
      * Before calling this method you must call the authenticated() method and the createRepository() method
      * API Documentation: https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#create-or-update-file-contents
-     * @param {*} filePath - the file that you want to upload to the repository. Example: index.html, style.css, ...
-     * @param {*} content - the content of the file you want to upload
+     * @param {string} filePath - the file that you want to upload to the repository. Example: index.html, style.css, ...
+     * @param {string} content - the content of the file you want to upload
+     * @returns {void}
      */
     async uploadFileToRepository(filePath, content) {
         try {
@@ -119,8 +124,8 @@ class ICONPortfolio {
 
     /**
      * Private method
-     * @param {*} convertString - The string to convert to base64 
-     * @returns 
+     * @param {string} convertString - The string to convert to base64 
+     * @returns {string} - base64 encoded string
      */
     convertToBase64(convertString) {
         return Buffer.from(convertString).toString('base64')
@@ -130,6 +135,7 @@ class ICONPortfolio {
      * This method will create a github page for the repository you just created
      * For the Github Pages to work correctly, you need to have a index.html file at root
      * API Documentation: https://docs.github.com/en/rest/pages?apiVersion=2022-11-28#create-a-github-pages-site
+     * @returns {void}
      */
     async createGithubPage() {
         try {
